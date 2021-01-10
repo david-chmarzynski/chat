@@ -14,7 +14,7 @@ const Signin = ({
       <StyledForm onSubmit={e => signin(e)}>
         <StyledInput placeholder="Username" type="text" onChange={e => setSigninUsername(e.target.value)} />
         <StyledInput placeholder="Password" type="password" onChange={e => setSigninPassword(e.target.value)} />
-        <StyledButton type="submit">SIGNIN</StyledButton>
+        <StyledButton type="submit">ACCESS</StyledButton>
       </StyledForm>
     </StyledSignin>
   );

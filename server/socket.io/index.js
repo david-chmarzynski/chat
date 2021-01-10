@@ -3,6 +3,7 @@ const { server } = require('../server');
 
 
 // IMPORT CONTROLLERS
+const { signin } = require('../controllers/auth.controller');
 
 // IMPORT QUERIES
 
@@ -13,9 +14,9 @@ const ios = socketio(server);
 const chatroom = ios.of("/chatroom");
 
 ios.on('connect', (socket) => {
-  console.log('Connected to io');
 
+  signin(socket);
   socket.on('disconnect', () => {
-    console.log("Disconnected from io");
+    
   });
 });

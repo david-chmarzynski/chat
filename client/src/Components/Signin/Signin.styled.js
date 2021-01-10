@@ -37,6 +37,7 @@ export const StyledButton = styled.button`
   color: yellowgreen;
   background-color: transparent;
   border: 2px solid yellowgreen;
+  font-weight: 700;
 
   :focus {
     background-color: yellowgreen;

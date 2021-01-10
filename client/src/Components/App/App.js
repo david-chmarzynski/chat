@@ -8,6 +8,7 @@ import { StyledApp } from './App.styled';
 
 // IMPORT COMPONENTS
 import Signin from '../Signin/Signin';
+import Alert from '../Alert/Alert';
 
 // SOCKETS
 let socket;
@@ -18,15 +19,12 @@ const App = () => {
   const [signinUsername, setSigninUsername] = useState('');
   const [signinPassword, setSigninPassword] = useState('');
   const [alert, setAlert] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const [online, setOnline] = useState(false);
 
   // USE EFFECT MAIN NAMESPACE
   useEffect(() => {
     socket = io();
-
-    socket.on('connect', () => {
-      console.log("User connected to io");
-    });
   });
 
   // USE EFFECT CHATROOM NAMESPACE
@@ -37,6 +35,8 @@ const App = () => {
     socket.emit('signin', ids, (res) => {
       if(res.status === 200) {
         setOnline(true);
+        setAlert(true);
+        setAlertMessage(res.message)
       } else {
         setAlert(true);
       }
@@ -51,6 +51,9 @@ const App = () => {
           setSigninPassword={setSigninPassword}
           setSigninUsername={setSigninUsername}
         />
+      )}
+      {alert && (
+        <Alert message={alertMessage} setAlert={setAlert}/>
       )}
     </StyledApp>
   );
